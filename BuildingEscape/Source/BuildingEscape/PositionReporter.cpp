@@ -2,6 +2,7 @@
 
 #include "BuildingEscape.h"
 #include "PositionReporter.h"
+#include "Gameframework/Actor.h"
 
 
 // Sets default values for this component's properties
@@ -18,7 +19,8 @@ void UPositionReporter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	UE_LOG(LogTemp, Warning, TEXT("Position Report reporting for duty on chair!"));
+	FString ObjectName = GetOwner()->GetName();
+	UE_LOG(LogTemp, Warning, TEXT("Position Report for %s"), *ObjectName);
 }
 
 
