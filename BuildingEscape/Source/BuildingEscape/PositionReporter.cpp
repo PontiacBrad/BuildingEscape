@@ -3,6 +3,7 @@
 #include "BuildingEscape.h"
 #include "PositionReporter.h"
 #include "Gameframework/Actor.h"
+#include "Runtime/Core/Public/Math/Vector.h"
 
 
 // Sets default values for this component's properties
@@ -20,7 +21,8 @@ void UPositionReporter::BeginPlay()
 	Super::BeginPlay();
 
 	FString ObjectName = GetOwner()->GetName();
-	UE_LOG(LogTemp, Warning, TEXT("Position Report for %s"), *ObjectName);
+	FString ObjectPos = GetOwner()->GetTransform().GetLocation().ToString();
+	UE_LOG(LogTemp, Warning, TEXT("%s is at %s"), *ObjectName, *ObjectPos);
 }
 
 
