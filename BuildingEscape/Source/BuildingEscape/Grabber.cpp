@@ -1,7 +1,7 @@
 // Copyright Bradley Gray 2018
 
-#include "BuildingEscape.h"
 #include "Grabber.h"
+#include "BuildingEscape.h"
 
 
 // Sets default values for this component's properties
@@ -19,9 +19,7 @@ UGrabber::UGrabber()
 void UGrabber::BeginPlay()
 {
 	Super::BeginPlay();
-
-	// ...
-	
+	UE_LOG(LogTemp, Warning, TEXT("Grabber reporting for duty!"));
 }
 
 

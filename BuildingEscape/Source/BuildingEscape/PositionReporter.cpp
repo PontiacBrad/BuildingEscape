@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BuildingEscape.h"
 #include "PositionReporter.h"
+#include "BuildingEscape.h"
 #include "Gameframework/Actor.h"
 #include "Runtime/Core/Public/Math/Vector.h"
 

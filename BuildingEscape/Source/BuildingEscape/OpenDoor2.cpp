@@ -1,8 +1,7 @@
 // Copyright Bradley Gray 2018
 
-#include "BuildingEscape.h"
 #include "OpenDoor2.h"
-
+#include "BuildingEscape.h"
 
 // Sets default values for this component's properties
 UOpenDoor2::UOpenDoor2()
