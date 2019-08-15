@@ -16,3 +16,5 @@ BuildingEscape/Content/StarterContent/HDRI
 BuildingEscape/.vs/BuildingEscape/v15/Browse.VC.opendb
 *.ipch
 *.suo
+*.VC.opendb
+*.sln
