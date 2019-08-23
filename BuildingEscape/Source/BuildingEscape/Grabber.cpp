@@ -59,6 +59,10 @@ void UGrabber::Grab()
 	
 	if (ActorHit)
 	{
+		if (!PhysicsHandle)
+		{
+			return;
+		}
 		PhysicsHandle->GrabComponent(ComponentToGrab, NAME_None, ComponentToGrab->GetOwner()->GetActorLocation(), true); // no bones needed allow rotation
 	}
 }
@@ -66,6 +70,10 @@ void UGrabber::Release()
 {
 	//UE_LOG(LogTemp, Warning, TEXT("Grab released"));
 	// TODO release physics handle
+	if (!PhysicsHandle)
+	{
+		return;
+	}
 	PhysicsHandle->ReleaseComponent();
 }
 // Called every frame
@@ -74,6 +82,10 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 	// If the physics handle is attached
 	
+	if (!PhysicsHandle)
+	{
+		return;
+	}
 	if (PhysicsHandle->GrabbedComponent)
 	{
 		// move the object that we're holding

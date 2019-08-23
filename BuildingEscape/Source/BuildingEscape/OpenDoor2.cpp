@@ -19,17 +19,29 @@ void UOpenDoor2::BeginPlay()
 {
 	Super::BeginPlay();
 
+	if (!Owner)
+	{
+		return;
+	}
 	Owner = GetOwner();
 	//ActorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn();
 }
 
 void UOpenDoor2::OpenDoor()
 {
+	if (!Owner)
+	{
+		return;
+	}
 	Owner->SetActorRotation(FRotator(0.0f, OpenAngle, 0.0f));
 }
 
 void UOpenDoor2::CloseDoor()
 {
+	if (!Owner)
+	{
+		return;
+	}
 	Owner->SetActorRotation(FRotator(0.f, 90.f, 0.f));
 }
 
@@ -59,6 +71,16 @@ float UOpenDoor2::GetTotalMassOfActorsOnPlate()
 	float TotalMass = 0.f;
 	// Find all the overlapping actors
 	TArray<AActor*> OverlappingActors;
+
+	if (!PressurePlate)
+	{
+		if (!Owner)
+		{
+			return -1.f;
+		}
+		UE_LOG(LogTemp, Error, TEXT("%s missing pressure plate"), *GetOwner()->GetName());
+		return -1.f;
+	}
 	PressurePlate->GetOverlappingActors(OUT OverlappingActors);
 	// Iterate through them adding their masses
 	for (const auto& Actor : OverlappingActors)
