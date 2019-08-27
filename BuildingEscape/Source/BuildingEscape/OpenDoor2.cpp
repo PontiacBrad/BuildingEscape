@@ -19,21 +19,22 @@ void UOpenDoor2::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (!Owner)
-	{
-		return;
-	}
 	Owner = GetOwner();
+
+	if (Owner == nullptr)
+	{
+		UE_LOG(LogTemp, Error, TEXT(" Owner is null: "));
+	}
+
 	//ActorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn();
 }
 
 void UOpenDoor2::OpenDoor()
 {
-	if (!Owner)
-	{
-		return;
-	}
-	Owner->SetActorRotation(FRotator(0.0f, OpenAngle, 0.0f));
+	//Owner->SetActorRotation(FRotator(0.0f, OpenAngle, 0.0f));
+	UE_LOG(LogTemp, Error, TEXT(" Open Door "));
+
+	OnOpenRequest.Broadcast();
 }
 
 void UOpenDoor2::CloseDoor()
