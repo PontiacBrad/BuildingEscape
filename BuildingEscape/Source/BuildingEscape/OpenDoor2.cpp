@@ -29,22 +29,20 @@ void UOpenDoor2::BeginPlay()
 	//ActorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn();
 }
 
-void UOpenDoor2::OpenDoor()
-{
-	//Owner->SetActorRotation(FRotator(0.0f, OpenAngle, 0.0f));
-	UE_LOG(LogTemp, Error, TEXT(" Open Door "));
+//void UOpenDoor2::OpenDoor()
+//{
+//	//Owner->SetActorRotation(FRotator(0.0f, OpenAngle, 0.0f));
+//	UE_LOG(LogTemp, Error, TEXT(" Open Door "));
+//}
 
-	OnOpenRequest.Broadcast();
-}
-
-void UOpenDoor2::CloseDoor()
-{
-	if (!Owner)
-	{
-		return;
-	}
-	Owner->SetActorRotation(FRotator(0.f, 90.f, 0.f));
-}
+//void UOpenDoor2::CloseDoor()
+//{
+//	if (!Owner)
+//	{
+//		return;
+//	}
+//	Owner->SetActorRotation(FRotator(0.f, 90.f, 0.f));
+//}
 
 
 // Called every frame
@@ -54,16 +52,14 @@ void UOpenDoor2::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 
 	//Poll the trigger volume
 	//If the ActorThatOpens is in the volume
-	if (GetTotalMassOfActorsOnPlate() > 50.f) // TODO make into a parameter
+	if (GetTotalMassOfActorsOnPlate() > TriggerMass) // TODO make into a parameter
 	{
-		OpenDoor();
-		LastDoorOpenTime = GetWorld()->GetTimeSeconds();
-	}
-
-	//Check if it's time to close the door
-	if (GetWorld()->GetTimeSeconds() - LastDoorOpenTime > DoorCloseDelay)
+		OnOpen.Broadcast(); //OpenDoor();
+		//LastDoorOpenTime = GetWorld()->GetTimeSeconds();
+	}	//Check if it's time to close the door
+	else	//if (GetWorld()->GetTimeSeconds() - LastDoorOpenTime > DoorCloseDelay)
 	{
-		CloseDoor();
+		OnClose.Broadcast();//CloseDoor();
 	}
 
 }
